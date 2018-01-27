@@ -24,37 +24,48 @@ namespace Vpnbook_Dialer
             Console.WriteLine("Getting vpnbook password...");
             var password = GetVpnbookPassword();
             Console.WriteLine("Password retrieved successfully..");
-
+             
             int count = 1;
-            Console.WriteLine("Select VPNBOOK VPN connection:");
-            foreach (Match m in matches)
-                System.Console.WriteLine(count++ +". "+ m.Groups[1]);
-
-            int num = Convert.ToInt32(Console.ReadLine());
-            string connectionName = matches[num - 1].Groups[1].ToString();
-
-            var proc = new Process
+            int num = 1;
+            if (matches.Count > 1)
             {
-                StartInfo = new ProcessStartInfo
-                {
-                    FileName = "rasdial.exe",
-                    Arguments = connectionName+" vpnbook "+ password,
-                    UseShellExecute = false,
-                    RedirectStandardOutput = true,
-                    CreateNoWindow = true
-                }
-            };
-            proc.Start();
-            while (!proc.StandardOutput.EndOfStream)
-            {
-                string line = proc.StandardOutput.ReadLine();
-                // do something with line
-                Console.WriteLine(line);
+                Console.WriteLine("Select VPNBOOK VPN connection:");
+                foreach (Match m in matches)
+                    System.Console.WriteLine(count++ + ". " + m.Groups[1]);
+
+                num = Convert.ToInt32(Console.ReadLine());
             }
-            //System.Diagnostics.Process.Start("rasdial.exe", "VPNConnectionName VPNUsername VPNPassword");
 
-            Console.WriteLine("Press any key to exit..");
-            Console.ReadLine();
+
+            if (matches.Count == 1)
+            {
+                string connectionName = matches[num - 1].Groups[1].ToString();
+
+                var proc = new Process
+                {
+                    StartInfo = new ProcessStartInfo
+                    {
+                        FileName = "rasdial.exe",
+                        Arguments = connectionName + " vpnbook " + password,
+                        UseShellExecute = false,
+                        RedirectStandardOutput = true,
+                        CreateNoWindow = true
+                    }
+                };
+                proc.Start();
+                while (!proc.StandardOutput.EndOfStream)
+                {
+                    string line = proc.StandardOutput.ReadLine();
+                    // do something with line
+                    Console.WriteLine(line);
+                }
+                //System.Diagnostics.Process.Start("rasdial.exe", "VPNConnectionName VPNUsername VPNPassword");
+            }
+            else
+            {
+                Console.WriteLine("Press any key to exit..");
+                Console.ReadLine();
+            }
         }
 
         static string GetVpnbookPassword()
