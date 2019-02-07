@@ -1,5 +1,3 @@
-# NOTE: This project is no longer maintained as VPNBook implemented captcha on their site
-
 # Vpnbook-Dialer  
 Vpnbook dialer for Windows auto retrieves vpnbook.com password and connects vpn connection using the password  
   
