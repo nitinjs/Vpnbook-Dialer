@@ -16,7 +16,7 @@ namespace Vpnbook_Dialer
             // VPN adapters are stored in the rasphone.pdk
             // "C:\Users\Me\AppData\Roaming\Microsoft\Network\Connections\Pbk\rasphone.pbk"
             string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) +
-                          @"\Microsoft\Network\Connections\Pbk\rasphone.pbk";
+                          @"\Microsoft\Network\Connections\Pbk\_hiddenPbk\rasphone.pbk";//test 
 
             const string pattern = @"\[(.*?)\]";
             var matches = Regex.Matches(System.IO.File.ReadAllText(path), pattern);
