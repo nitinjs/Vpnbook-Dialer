@@ -86,17 +86,16 @@ namespace Vpnbook_Dialer
             Console.WriteLine("Converting to captcha to text");
             var Ocr = new AdvancedOcr()
             {
-                CleanBackgroundNoise = true,
+                CleanBackgroundNoise = false,
                 EnhanceContrast = true,
                 EnhanceResolution = true,
                 Language = IronOcr.Languages.English.OcrLanguagePack,
                 Strategy = IronOcr.AdvancedOcr.OcrStrategy.Advanced,
-                ColorSpace = AdvancedOcr.OcrColorSpace.Color,
-                DetectWhiteTextOnDarkBackgrounds = true,
+                ColorSpace = AdvancedOcr.OcrColorSpace.GrayScale,
+                DetectWhiteTextOnDarkBackgrounds = false,
                 InputImageType = AdvancedOcr.InputTypes.Document,
-                RotateAndStraighten = true,
-                ReadBarCodes = false,
-                ColorDepth = 4
+                RotateAndStraighten = false,
+                ReadBarCodes = false
             };
             var Result = Ocr.Read(img);
 
