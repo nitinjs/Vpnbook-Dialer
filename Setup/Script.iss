@@ -37,8 +37,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "D:\Projects\Vpnbook Dialer\Vpnbook Dialer\bin\Debug\Vpnbook Dialer.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "D:\Projects\Vpnbook Dialer\Vpnbook Dialer\bin\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\bin\Debug\Vpnbook Dialer.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\bin\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
