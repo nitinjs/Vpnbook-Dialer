@@ -2,7 +2,7 @@
 ; SEE THE DOCUMENTATION FOR DETAILS ON CREATING INNO SETUP SCRIPT FILES!
 
 #define MyAppName "Vpnbook Dialer"
-#define MyAppVersion "1.0"
+#define MyAppVersion "1.2019.3.17"
 #define MyAppPublisher "Nitin Sawant"
 #define MyAppURL "http://www.nitinsawant.com/"
 #define MyAppExeName "Vpnbook Dialer.exe"
@@ -22,10 +22,10 @@ AppUpdatesURL={#MyAppURL}
 DefaultDirName={userappdata}\{#MyAppName}
 DisableDirPage=yes
 DisableProgramGroupPage=yes
-LicenseFile=D:\Projects\Vpnbook Dialer\Vpnbook Dialer\liscence.txt
-OutputDir=D:\Projects\Vpnbook Dialer\Setup
+LicenseFile=F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\Vpnbook Dialer\liscence.txt
+OutputDir=F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\Setup
 OutputBaseFilename=Vpnbook Dialer setup
-SetupIconFile=D:\Projects\Vpnbook Dialer\Vpnbook Dialer\favicon.ico
+SetupIconFile=F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\Vpnbook Dialer\favicon.ico
 Compression=lzma
 SolidCompression=yes     
 CloseApplications=force
@@ -37,8 +37,8 @@ Name: "english"; MessagesFile: "compiler:Default.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
 
 [Files]
-Source: "F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\bin\Debug\Vpnbook Dialer.exe"; DestDir: "{app}"; Flags: ignoreversion
-Source: "F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\bin\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\Vpnbook Dialer\bin\Debug\Vpnbook Dialer.exe"; DestDir: "{app}"; Flags: ignoreversion
+Source: "F:\Users\Nitin\Source\Repos\Vpnbook-Dialer\Vpnbook Dialer\bin\Debug\*"; DestDir: "{app}"; Flags: ignoreversion recursesubdirs createallsubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]
