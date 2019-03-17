@@ -15,56 +15,65 @@ namespace Vpnbook_Dialer
     {
         static void Main(string[] args)
         {
-            // VPN adapters are stored in the rasphone.pdk => Windows7
-            // "C:\Users\Me\AppData\Roaming\Microsoft\Network\Connections\Pbk\rasphone.pbk"
-            string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) +
-                          @"\Microsoft\Network\Connections\Pbk\_hiddenPbk\rasphone.pbk";//test 
-
-            const string pattern = @"\[(.*?)\]";
-            var matches = Regex.Matches(System.IO.File.ReadAllText(path), pattern);
-
-            Console.WriteLine("Getting vpnbook password...");
-            var password = GetVpnbookPassword();
-            Console.WriteLine("Password retrieved successfully..");
-             
-            int count = 1;
-            int num = 1;
-            if (matches.Count > 1)
+            try
             {
-                Console.WriteLine("Select VPNBOOK VPN connection:");
-                foreach (Match m in matches)
-                    System.Console.WriteLine(count++ + ". " + m.Groups[1]);
+                // VPN adapters are stored in the rasphone.pdk => Windows7
+                // "C:\Users\Me\AppData\Roaming\Microsoft\Network\Connections\Pbk\rasphone.pbk"
+                string path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData) +
+                              @"\Microsoft\Network\Connections\Pbk\_hiddenPbk\rasphone.pbk";//test 
 
-                num = Convert.ToInt32(Console.ReadLine());
-            }
+                const string pattern = @"\[(.*?)\]";
+                var matches = Regex.Matches(System.IO.File.ReadAllText(path), pattern);
 
+                Console.WriteLine("Getting vpnbook password...");
+                var password = GetVpnbookPassword();
+                Console.WriteLine("Password retrieved successfully..");
 
-            if (matches.Count == 1)
-            {
-                string connectionName = matches[num - 1].Groups[1].ToString();
-
-                var proc = new Process
+                int count = 1;
+                int num = 1;
+                if (matches.Count > 1)
                 {
-                    StartInfo = new ProcessStartInfo
-                    {
-                        FileName = "rasdial.exe",
-                        Arguments = connectionName + " vpnbook " + password,
-                        UseShellExecute = false,
-                        RedirectStandardOutput = true,
-                        CreateNoWindow = true
-                    }
-                };
-                proc.Start();
-                while (!proc.StandardOutput.EndOfStream)
-                {
-                    string line = proc.StandardOutput.ReadLine();
-                    // do something with line
-                    Console.WriteLine(line);
+                    Console.WriteLine("Select VPNBOOK VPN connection:");
+                    foreach (Match m in matches)
+                        System.Console.WriteLine(count++ + ". " + m.Groups[1]);
+
+                    num = Convert.ToInt32(Console.ReadLine());
                 }
-                //System.Diagnostics.Process.Start("rasdial.exe", "VPNConnectionName VPNUsername VPNPassword");
+
+
+                if (matches.Count == 1)
+                {
+                    string connectionName = matches[num - 1].Groups[1].ToString();
+
+                    var proc = new Process
+                    {
+                        StartInfo = new ProcessStartInfo
+                        {
+                            FileName = "rasdial.exe",
+                            Arguments = connectionName + " vpnbook " + password,
+                            UseShellExecute = false,
+                            RedirectStandardOutput = true,
+                            CreateNoWindow = true
+                        }
+                    };
+                    proc.Start();
+                    while (!proc.StandardOutput.EndOfStream)
+                    {
+                        string line = proc.StandardOutput.ReadLine();
+                        // do something with line
+                        Console.WriteLine(line);
+                    }
+                    //System.Diagnostics.Process.Start("rasdial.exe", "VPNConnectionName VPNUsername VPNPassword");
+                }
+                else
+                {
+                    Console.WriteLine("Press any key to exit..");
+                    Console.ReadLine();
+                }
             }
-            else
+            catch (Exception ex)
             {
+                Console.WriteLine(ex.Message);
                 Console.WriteLine("Press any key to exit..");
                 Console.ReadLine();
             }
