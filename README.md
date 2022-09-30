@@ -20,5 +20,3 @@ CsQuery
   
 Compatibility:  
 Windows 10  
-
-[click here to donate if you find this project helpful](https://paypal.me/nitinsa1?locale.x=en_GB)
